@@ -10,10 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class PostsService {
 
-    private final PostsRepository postsRepository;
+    private final PostsService postsService;
 
     @Transactional
     public Long save(PostsSaveRequestDto dto) {
-        return postsRepository.save(dto.toEntity()).getId();
+        return postsService.save(dto);
     }
 }
