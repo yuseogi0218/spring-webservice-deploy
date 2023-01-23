@@ -8,3 +8,12 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
+
+
+#HandleBars
+handlebars:
+  enabled: true
+  prefix:
+    classpath: /templates/
+  suffix: .hbs
+  cache: false
