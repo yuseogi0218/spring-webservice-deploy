@@ -1,0 +1,25 @@
+# Test
+spring:
+  profiles:
+    active: local
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  # JPA setting
+  jpa:
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: true
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql: trace
