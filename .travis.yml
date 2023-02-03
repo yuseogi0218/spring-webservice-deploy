@@ -15,6 +15,25 @@ cache:
 # main 브랜치에 PUSH 되었을때 수행되는 명령어
 script: "./gradlew clean build"
 
+before_deploy:
+  - zip -r springboot-webservice *
+  - mkdir -p deploy
+  - mv springboot-webservice.zip deploy/springboot-webservice.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: springboot-webservice-deploy-s3
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: public_read
+    local_dir: deploy
+    wait-until-deployed: true
+    on:
+      repo: yuseogi0218/spring-webservice-deploy
+      branch: main
+
 # CI 실행 완료시 메일로 알람
 notifications:
   email:
