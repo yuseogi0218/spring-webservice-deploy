@@ -2,6 +2,7 @@ language: java
 jdk:
   - openjdk11
 
+# CI 실행시킬 브랜치
 branches:
   only:
     - main
