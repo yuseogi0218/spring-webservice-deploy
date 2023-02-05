@@ -1,0 +1,48 @@
+spring:
+  profiles:
+    active: local
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  # H2-DB setting
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+  datasource:
+    url: jdbc:h2:mem:testdb # h2-DB url
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  # JPA setting
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      data-locations: classpath:data-h2.sql
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql: trace
+
+#HandleBars
+handlebars:
+  enabled: true
+  prefix:
+    classpath: /templates/
+  suffix: .hbs
+  cache: false
